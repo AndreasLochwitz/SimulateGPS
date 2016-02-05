@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>GPS Location Chooser</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+        <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+        <style>
+            #map { 
+                position: absolute;
+                left: 0px;
+                top: 0px;
+                right: 0px;
+                bottom: 0px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="map"></div>
+        <script>
+            var rolandPosition = [53.075890463535174, 8.807328343391418];
+            
+            var map = L.map('map').setView(rolandPosition, 13);
+            L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+            var marker = L.marker(rolandPosition, { draggable: true}).addTo(map);
+            marker.on('dragend', function(e) {
+                var pos = e.target._latlng;
+                map.setView([pos.lat, pos.lng]);
+                console.log(window.parent);
+                opener.simulateGPS(pos.lat, pos.lng);
+                //console.log(e.target._latlng); 
+            });
+            
+        </script>
+    </body>
+</html>
