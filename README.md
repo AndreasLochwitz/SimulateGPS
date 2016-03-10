@@ -26,7 +26,7 @@ simulateGPS(53.075890463535174, 8.807328343391418); // Position of the Roland st
 Example usage:
 
 ```
-showLoationChooser();
+showLocationChooser();
 ```
 
 Open a window with map and a single marker - move the marker to trigger gps updates.
